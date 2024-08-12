@@ -5,7 +5,7 @@ import Nav from "@/components/nav";
 export default function Home() {
   const currentPage: PageType = 0;
   return (
-    <main className="bg-gradient-to-b from-zinc-50 to-cyan-200">
+    <main className="bg-gradient-to-b from-zinc-50 to-cyan-200 pt-10">
       <div className="flex justify-center items-center min-h-screen">
         <div className="grid grid-cols-3 gap-4">
           <div className="relative flex justify-center">
