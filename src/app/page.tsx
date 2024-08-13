@@ -3,12 +3,13 @@ import Link from "next/link";
 import Nav from "@/components/nav";
 
 export default function Home() {
-  const currentPage: PageType = 0;
+  const currentPage: number = 0;
   return (
-    <main className="bg-gradient-to-b from-zinc-50 to-cyan-200 pt-10">
-      <div className="flex justify-center items-center min-h-screen">
+    <main className="bg-gradient-to-b from-zinc-50 to-cyan-200">
+      <div className="flex justify-center items-center min-h-screen pt-10">
         <div className="grid grid-cols-3 gap-4">
           <div className="relative flex justify-center">
+            <Nav page={currentPage} />
             <Link href="/whatwedo">
               <figure>
                 <Image
@@ -19,7 +20,6 @@ export default function Home() {
                 />
               </figure>
             </Link>
-            <Nav page={currentPage} />
           </div>
           <div className="flex justify-center">
             <Link href="/maintainable">
@@ -34,7 +34,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="relative flex justify-center">
-            <Link href="/">
+          <Link href="/">
               <figure className="absolute top-[-50px] left-1/2">
                 <Image
                   src="/images/logo/logo-final.png"

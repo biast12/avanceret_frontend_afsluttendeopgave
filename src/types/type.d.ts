@@ -1,1 +1,5 @@
-declare type PageType = number;
+declare type ModalProps = {
+  show: boolean;
+  email: string;
+  onClose: () => void;
+};

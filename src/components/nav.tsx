@@ -1,8 +1,17 @@
+"use client"
+
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const nav = ({ page }: { page: PageType }) => {
-  console.log("Page number: " + page);
+const nav = ({ page }: { page: number }) => {
+  const [animate, setAnimate] = useState(false);
+
+  const handleClick = () => {
+    setAnimate(true);
+    setTimeout(() => setAnimate(false), 100)
+  };
+
   return (
     <div
       className={`grid gap-x-4 absolute top-[-85px] ${
@@ -10,7 +19,7 @@ const nav = ({ page }: { page: PageType }) => {
       }`}
     >
       {page > 0 && (
-        <Link href="/">
+        <Link href="/" onClick={handleClick}>
           <figure>
             <Image
               src="/images/navigation/back.png"
@@ -21,7 +30,7 @@ const nav = ({ page }: { page: PageType }) => {
           </figure>
         </Link>
       )}
-      <Link href="/whatwedo">
+      <Link href="/whatwedo" onClick={handleClick}>
         <figure>
           <Image
             src="/images/navigation/nav-1.png"
@@ -31,7 +40,7 @@ const nav = ({ page }: { page: PageType }) => {
           />
         </figure>
       </Link>
-      <Link href="/maintainable">
+      <Link href="/maintainable" onClick={handleClick}>
         <figure>
           <Image
             src="/images/navigation/nav-2.png"
@@ -42,7 +51,7 @@ const nav = ({ page }: { page: PageType }) => {
         </figure>
       </Link>
 
-      <Link href="/getintouch">
+      <Link href="/getintouch" onClick={handleClick}>
         <figure>
           <Image
             src="/images/navigation/nav-3.png"
@@ -54,7 +63,7 @@ const nav = ({ page }: { page: PageType }) => {
       </Link>
       <div></div>
       {page == 1 ? (
-        <figure>
+        <figure className={animate ? "bounce" : ""}>
           <Image
             src="/images/navigation/nav-1-where.png"
             alt="nav-1-where"
@@ -66,7 +75,7 @@ const nav = ({ page }: { page: PageType }) => {
         <div></div>
       )}
       {page == 2 ? (
-        <figure>
+        <figure className={animate ? "bounce" : ""}>
           <Image
             src="/images/navigation/nav-2-where.png"
             alt="nav-2-where"
@@ -78,7 +87,7 @@ const nav = ({ page }: { page: PageType }) => {
         <div></div>
       )}
       {page == 3 ? (
-        <figure>
+        <figure className={animate ? "bounce" : ""}>
           <Image
             src="/images/navigation/nav-3-where.png"
             alt="nav-3-where"

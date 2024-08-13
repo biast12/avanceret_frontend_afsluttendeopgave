@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(-6px);
+  }
+
+}
+
+.bounce {
+  animation: bounce 1s;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
