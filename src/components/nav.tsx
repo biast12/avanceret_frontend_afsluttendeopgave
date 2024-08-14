@@ -1,15 +1,20 @@
-"use client"
+"use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import useFetch from "@/hook/useFetch";
 
-const nav = ({ page }: { page: number }) => {
+const Nav = ({ page }: { page: number }) => {
   const [animate, setAnimate] = useState(false);
+
+  const { data, error } = useFetch('http://localhost:3000/api/data/nav');
+
+  if (error) return <div>Error: {error.message}</div>;
 
   const handleClick = () => {
     setAnimate(true);
-    setTimeout(() => setAnimate(false), 100)
+    setTimeout(() => setAnimate(false), 100);
   };
 
   return (
@@ -30,76 +35,35 @@ const nav = ({ page }: { page: number }) => {
           </figure>
         </Link>
       )}
-      <Link href="/whatwedo" onClick={handleClick}>
-        <figure>
-          <Image
-            src="/images/navigation/nav-1.png"
-            alt="nav-1"
-            width={60}
-            height={0}
-          />
-        </figure>
-      </Link>
-      <Link href="/maintainable" onClick={handleClick}>
-        <figure>
-          <Image
-            src="/images/navigation/nav-2.png"
-            alt="nav-2"
-            width={60}
-            height={0}
-          />
-        </figure>
-      </Link>
-
-      <Link href="/getintouch" onClick={handleClick}>
-        <figure>
-          <Image
-            src="/images/navigation/nav-3.png"
-            alt="nav-3"
-            width={60}
-            height={0}
-          />
-        </figure>
-      </Link>
+      {data && data.map((item: any) => (
+        <Link key={item._id} href={`/${item.href}`} onClick={handleClick}>
+          <figure>
+            <Image
+              src={`/images/navigation/${item.src}.png`}
+              alt={item.src}
+              width={60}
+              height={60}
+            />
+          </figure>
+        </Link>
+      ))}
       <div></div>
-      {page == 1 ? (
-        <figure className={animate ? "bounce" : ""}>
-          <Image
-            src="/images/navigation/nav-1-where.png"
-            alt="nav-1-where"
-            width={60}
-            height={0}
-          />
-        </figure>
-      ) : (
-        <div></div>
-      )}
-      {page == 2 ? (
-        <figure className={animate ? "bounce" : ""}>
-          <Image
-            src="/images/navigation/nav-2-where.png"
-            alt="nav-2-where"
-            width={60}
-            height={0}
-          />
-        </figure>
-      ) : (
-        <div></div>
-      )}
-      {page == 3 ? (
-        <figure className={animate ? "bounce" : ""}>
-          <Image
-            src="/images/navigation/nav-3-where.png"
-            alt="nav-3-where"
-            width={60}
-            height={0}
-          />
-        </figure>
-      ) : (
-        <div></div>
+      {Array.from({ length: 3 }, (_, index) =>
+        page === index + 1 ? (
+          <figure key={index} className={animate ? "bounce" : ""}>
+            <Image
+              src={`/images/navigation/nav-${index + 1}-where.png`}
+              alt={`nav-${index + 1}-where`}
+              width={60}
+              height={60}
+            />
+          </figure>
+        ) : (
+          <div key={index}></div>
+        )
       )}
     </div>
   );
 };
 
-export default nav;
+export default Nav;

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Nav from "@/components/nav";
+import Nav from "@/components/Nav";
 
 const page = () => {
   const currentPage: number = 2;
