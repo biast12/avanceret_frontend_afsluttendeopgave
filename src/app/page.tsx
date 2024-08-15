@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Nav from "@/components/Nav";
-import simpleFetch from "@/hooks/fetch";
+import Nav from "../components/Nav";
+import simpleFetch from "../hooks/fetch";
 
 export default function Home() {
   const [data, setData] = useState<DataFrontItem[] | null>(null);

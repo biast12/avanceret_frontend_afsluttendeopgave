@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import simpleFetch from "@/hooks/fetch";
+import simpleFetch from "../hooks/fetch";
 
 const Modal: React.FC<ModalProps> = ({ show, email, onClose }) => {
   const [modalMaxWords, setModalMaxWords] = useState(50);
