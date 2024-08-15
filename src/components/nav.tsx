@@ -19,8 +19,7 @@ const Nav = ({ page }: NavProps) => {
       setData(data);
       setError(error);
     })();
-  }),
-    [];
+  }, []);
 
   const handleClick = useCallback(() => {
     setAnimate(true);
