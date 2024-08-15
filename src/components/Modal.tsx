@@ -46,6 +46,7 @@ const Modal: React.FC<ModalProps> = ({ show, email, onClose }) => {
       return;
     }
     console.log("Data: ", data);
+    onClose();
   };
 
   if (!show) {
