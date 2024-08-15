@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        "http://localhost:3000/api/data/page3"
+        "/api/data/page3"
       );
 
       setData(data);

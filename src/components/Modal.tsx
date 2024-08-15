@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({ show, email, onClose }) => {
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     const dataToSend = { ...formData, to: email };
-    const { data, error } = await simpleFetch<ExpectedResponseType>("http://localhost:3000/api/data", "POST", dataToSend);
+    const { data, error } = await simpleFetch<ExpectedResponseType>("/api/data", "POST", dataToSend);
     if (error) {
       console.log("Error: ", error);
       return;

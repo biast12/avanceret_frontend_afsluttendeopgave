@@ -17,11 +17,11 @@ const Page = () => {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        "http://localhost:3000/api/data/page3"
+        "/api/data/page3"
       );
       const { data: emailData, error: emailError } = await simpleFetch<
         EmailItem[]
-      >("http://localhost:3000/api/data/email");
+      >("/api/data/email");
 
       setData(data);
       setEmailData(emailData);
