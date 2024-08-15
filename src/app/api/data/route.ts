@@ -36,3 +36,23 @@ export const GET = async (req: NextRequest) => {
     );
   }
 };
+
+export const POST = async (req: NextRequest) => {
+  try {
+    const { to, name, email, subject, message } = await req.json();
+
+    if (!to || !email || !name || !subject || !message) {
+      return NextResponse.json({ error: "All fields are required" }, { status: 400 });
+    }
+
+    const { data, error } = await supabase.from('emails').insert([{ to, name, email, subject, message }]);
+
+    if (error) {
+      return NextResponse.json({ error: "Error adding data: " + error.message }, { status: 500 });
+    }
+
+    return NextResponse.json(data, { status: 201 });
+  } catch (err) {
+    return NextResponse.json({ error: "Unexpected error: " + err }, { status: 500 });
+  }
+};
