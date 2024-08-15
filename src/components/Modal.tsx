@@ -40,7 +40,7 @@ const Modal: React.FC<ModalProps> = ({ show, email, onClose }) => {
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     const dataToSend = { ...formData, to: email };
-    const { data, error } = await simpleFetch<ExpectedResponseType>("https://avanceret-frontend-afsluttendeopgave.vercel.app/api/data", "POST", dataToSend);
+    const { data, error } = await simpleFetch<ExpectedResponseType>(process.env.NEXT_PUBLIC_HOST + "/api/data", "POST", dataToSend);
     if (error) {
       console.log("Error: ", error);
       return;

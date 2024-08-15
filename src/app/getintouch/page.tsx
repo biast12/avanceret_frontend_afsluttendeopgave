@@ -17,11 +17,11 @@ const Page = () => {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        "https://avanceret-frontend-afsluttendeopgave.vercel.app/api/data/page3"
+        process.env.NEXT_PUBLIC_HOST + "/api/data/page3"
       );
       const { data: emailData, error: emailError } = await simpleFetch<
         EmailItem[]
-      >("https://avanceret-frontend-afsluttendeopgave.vercel.app/api/data/email");
+      >(process.env.NEXT_PUBLIC_HOST + "/api/data/email");
 
       setData(data);
       setEmailData(emailData);

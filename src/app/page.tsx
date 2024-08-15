@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        "https://avanceret-frontend-afsluttendeopgave.vercel.app/api/data/page3"
+        process.env.NEXT_PUBLIC_HOST + "/api/data/page3"
       );
 
       setData(data);
