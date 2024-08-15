@@ -13,7 +13,7 @@ const Nav = ({ page }: NavProps) => {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        "/api/data/page3"
+        "https://avanceret-frontend-afsluttendeopgave.vercel.app/api/data/page3"
       );
 
       setData(data);
