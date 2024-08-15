@@ -1,14 +1,26 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import useFetch from "@/hook/useFetch";
+import simpleFetch from "@/hooks/fetch";
 
 const Nav = ({ page }: NavProps) => {
+  const [data, setData] = useState<DataNavItem[] | null>(null);
+  const [error, setError] = useState<Error | null>(null);
   const [animate, setAnimate] = useState(false);
 
-  const { data, error } = useFetch<DataNavItem[]>("http://localhost:3000/api/data/nav");
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await simpleFetch<DataItem[]>(
+        "http://localhost:3000/api/data/page3"
+      );
+
+      setData(data);
+      setError(error);
+    })();
+  }),
+    [];
 
   const handleClick = useCallback(() => {
     setAnimate(true);
@@ -43,7 +55,7 @@ const Nav = ({ page }: NavProps) => {
           </figure>
         </Link>
       )}
-      {data && data.map(renderNavItem)}
+      {data && data.map((item, index) => renderNavItem(item, index))}
       <div></div>
       {Array.from({ length: 3 }, (_, index) => renderPageIndicator(index))}
     </div>

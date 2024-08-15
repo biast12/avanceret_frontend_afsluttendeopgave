@@ -5,9 +5,30 @@ declare type ModalProps = {
 };
 
 declare type EmailFormProps = {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleWordCount: (value: string) => void;
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   wordCount: number;
   modalMaxWords: number;
+};
+
+declare type POSTData = {
+  to: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
+declare type ExpectedResponseType = {
+  id: number;
+  message: string;
+}
+
+declare type DataFrontItem = {
+  currentPage: number;
+  href: string;
+  src: string;
 };
 
 declare type DataItem = {
@@ -28,6 +49,7 @@ declare type DataNavItem = {
   href: string;
   src: string;
 };
+
 declare type NavProps = {
   page: number;
 }

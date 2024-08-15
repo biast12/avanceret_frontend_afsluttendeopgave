@@ -1,12 +1,25 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Nav from "@/components/Nav";
-import useFetch from "@/hook/useFetch";
+import simpleFetch from "@/hooks/fetch";
 
 export default function Home() {
-  const { data, error } = useFetch("http://localhost:3000/api/data/homepage");
+  const [data, setData] = useState<DataFrontItem[] | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await simpleFetch<DataItem[]>(
+        "http://localhost:3000/api/data/page3"
+      );
+
+      setData(data);
+      setError(error);
+    })();
+  }, []);
 
   if (error) return <div>Error: {error.message}</div>;
 
@@ -15,9 +28,9 @@ export default function Home() {
       <div className="flex justify-center items-center min-h-screen pt-10">
         <div className="grid grid-cols-3 gap-4">
           {data &&
-            data.map((item: any, index: number) => (
-              <div key={item._id} className="relative flex justify-center">
-                {index === 0 && <Nav page={data.currentPage} />}
+            data.map((item, index) => (
+              <div key={index} className="relative flex justify-center">
+                {index === 0 && <Nav page={item.currentPage} />}
                 {index === 2 && (
                   <Link href="/">
                     <figure className="absolute top-[-50px] left-1/2">

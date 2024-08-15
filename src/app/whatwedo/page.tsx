@@ -1,11 +1,24 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
-import useFetch from "@/hook/useFetch";
+import simpleFetch from "@/hooks/fetch";
 
 const Page = () => {
-  const { data, error } = useFetch<DataItem[]>("http://localhost:3000/api/data/page1");
+  const [data, setData] = useState<DataItem[] | null>(null);
+  const [error, setError] = useState<Error | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { data, error } = await simpleFetch<DataItem[]>(
+        "http://localhost:3000/api/data/page3"
+      );
+
+      setData(data);
+      setError(error);
+    })();
+  }, []);
 
   if (error) {
     return <div>Error: {error?.message}</div>;

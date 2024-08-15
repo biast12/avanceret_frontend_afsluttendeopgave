@@ -3,7 +3,6 @@ import supabase from "@/services/client";
 
 export const GET = async (req: NextRequest) => {
   try {
-    // Fetch related data separately if needed
     const homepageData = await supabase.from("homepage").select("*");
     if (homepageData.error) throw homepageData.error;
 
