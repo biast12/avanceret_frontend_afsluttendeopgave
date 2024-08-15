@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import simpleFetch from "@/hooks/fetch";
-import HighlightWords from "@/services/HighlightWords";
+import HighlightWords from "@/components/HighlightWords";
 
 const Page = () => {
   const [data, setData] = useState<DataItem[] | null>(null);
@@ -12,7 +12,7 @@ const Page = () => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await simpleFetch<DataItem[]>(process.env.NEXT_PUBLIC_HOST + "/api/data/page1");
+      const { data, error } = await simpleFetch<DataItem[]>("/api/data/page1");
 
       setData(data);
       setError(error);

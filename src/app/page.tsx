@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await simpleFetch<DataItem[]>(process.env.NEXT_PUBLIC_HOST + "/api/data/homepage");
+      const { data, error } = await simpleFetch<DataItem[]>("/api/data/homepage");
 
       setData(data);
       setError(error);
