@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Nav from "@/components/Nav";
 import simpleFetch from "@/hooks/fetch";
+import HighlightWords from "@/services/HighlightWords";
 
 const Page = () => {
   const [data, setData] = useState<DataItem[] | null>(null);
@@ -11,9 +12,7 @@ const Page = () => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await simpleFetch<DataItem[]>(
-        process.env.NEXT_PUBLIC_HOST + "/api/data/page1"
-      );
+      const { data, error } = await simpleFetch<DataItem[]>(process.env.NEXT_PUBLIC_HOST + "/api/data/page1");
 
       setData(data);
       setError(error);
@@ -38,7 +37,7 @@ const Page = () => {
           </div>
           <div className="col-span-2 relative">
             <h1 className="text-3xl font-bold">
-              Design is the <span className="text-sky-900">matter of choice</span> ...
+              <HighlightWords text={data[0].title} className="text-sky-900" />
             </h1>
             <p className="text-sm font-bold whitespace-pre mt-4 flex-wrap">{data[0].text1}</p>
             <p className="text-sm font-bold whitespace-pre mt-4">{data[0].text2}</p>

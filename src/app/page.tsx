@@ -12,9 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await simpleFetch<DataItem[]>(
-        process.env.NEXT_PUBLIC_HOST + "/api/data/homepage"
-      );
+      const { data, error } = await simpleFetch<DataItem[]>(process.env.NEXT_PUBLIC_HOST + "/api/data/homepage");
 
       setData(data);
       setError(error);
@@ -34,30 +32,18 @@ export default function Home() {
                 {index === 2 && (
                   <Link href="/">
                     <figure className="absolute top-[-50px] left-1/2">
-                      <Image
-                        src="/images/logo/logo-final.png"
-                        alt="logo-final"
-                        width={150}
-                        height={0}
-                      />
+                      <Image src="/images/logo/logo-final.png" alt="logo-final" width={150} height={0} />
                     </figure>
                   </Link>
                 )}
                 <Link href={`/${item.href}`}>
                   <figure>
-                    <Image
-                      src={`/images/${item.src}.png`}
-                      alt={item.href}
-                      width={250}
-                      height={0}
-                    />
+                    <Image src={`/images/${item.src}.png`} alt={item.href} width={250} height={0} />
                   </figure>
                 </Link>
                 {index === 2 && (
                   <div className="absolute bottom-[-30px] bg-black text-white">
-                    <p className="mx-6 rounded font-bold">
-                      And yet... more to come
-                    </p>
+                    <p className="mx-6 rounded font-bold">And yet... more to come</p>
                   </div>
                 )}
               </div>

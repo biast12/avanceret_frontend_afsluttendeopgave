@@ -12,9 +12,7 @@ const Nav = ({ page }: NavProps) => {
 
   useEffect(() => {
     (async () => {
-      const { data, error } = await simpleFetch<DataItem[]>(
-        process.env.NEXT_PUBLIC_HOST + "/api/data/nav"
-      );
+      const { data, error } = await simpleFetch<DataItem[]>(process.env.NEXT_PUBLIC_HOST + "/api/data/nav");
 
       setData(data);
       setError(error);

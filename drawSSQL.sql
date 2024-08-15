@@ -1,8 +1,15 @@
 CREATE TABLE homepage(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     href TEXT NOT NULL,
-    src TEXT NOT NULL,
-    alt TEXT NOT NULL
+    src TEXT NOT NULL
+);
+CREATE TABLE emails(
+    _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    created_at TIMESTAMP(0) NOT NULL DEFAULT 'now()',
+    to TEXT NULL,
+    email TEXT NULL,
+    subject TEXT NULL,
+    message TEXT NULL
 );
 CREATE TABLE email(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -12,50 +19,37 @@ CREATE TABLE email(
 );
 CREATE TABLE page1(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    currentPage VARCHAR(30) CHECK (CURRENTPAGE IN ('')) NOT NULL,
     img_src TEXT NOT NULL,
     title TEXT NOT NULL,
     text1 TEXT NOT NULL,
     text2 TEXT NOT NULL,
-    text3 TEXT NOT NULL
+    text3 TEXT NOT NULL,
+    text_bottom TEXT NOT NULL
 );
 CREATE TABLE page3(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    img_src TEXT NOT NULL,
-    title TEXT NOT NULL,
-    text1 TEXT NOT NULL,
-    text2 TEXT NOT NULL
-);
-CREATE TABLE page2(
-    _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    currentPage VARCHAR(30) CHECK (CURRENTPAGE IN ('')) NOT NULL,
     img_src TEXT NOT NULL,
     title TEXT NOT NULL,
     text1 TEXT NOT NULL,
     text2 TEXT NOT NULL,
-    text3 TEXT NOT NULL
+    text_bottom TEXT NOT NULL
 );
-CREATE TABLE all_tables(
+CREATE TABLE page2(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    HomePage INT NULL,
-    nav INT NULL,
-    Page1 INT NULL,
-    Page2 INT NULL,
-    Page3 INT NULL
+    currentPage VARCHAR(30) CHECK (CURRENTPAGE IN ('')) NOT NULL,
+    img_src TEXT NOT NULL,
+    title TEXT NOT NULL,
+    text1 TEXT NOT NULL,
+    text2 TEXT NOT NULL,
+    text3 TEXT NOT NULL,
+    text_bottom TEXT NOT NULL
 );
 CREATE TABLE nav(
     _id INT CHECK (_id > 0) NOT NULL GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     href TEXT NOT NULL,
-    src TEXT NOT NULL,
-    alt TEXT NOT NULL
+    src TEXT NOT NULL
 );
 ALTER TABLE
-    all_tables ADD CONSTRAINT all_tables_page3_foreign FOREIGN KEY(Page3) REFERENCES page3(_id);
-ALTER TABLE
-    all_tables ADD CONSTRAINT all_tables_page1_foreign FOREIGN KEY(Page1) REFERENCES page1(_id);
-ALTER TABLE
-    all_tables ADD CONSTRAINT all_tables_page2_foreign FOREIGN KEY(Page2) REFERENCES page2(_id);
-ALTER TABLE
     email ADD CONSTRAINT email_page_id_foreign FOREIGN KEY(page_id) REFERENCES page3(_id);
-ALTER TABLE
-    all_tables ADD CONSTRAINT all_tables_homepage_foreign FOREIGN KEY(HomePage) REFERENCES homepage(_id);
-ALTER TABLE
-    all_tables ADD CONSTRAINT all_tables_nav_foreign FOREIGN KEY(nav) REFERENCES nav(_id);

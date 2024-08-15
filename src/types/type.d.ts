@@ -23,7 +23,7 @@ declare type POSTData = {
 declare type ExpectedResponseType = {
   id: number;
   message: string;
-}
+};
 
 declare type DataFrontItem = {
   currentPage: number;
@@ -34,6 +34,7 @@ declare type DataFrontItem = {
 declare type DataItem = {
   currentPage: number;
   img_src: string;
+  title: string;
   text1: string;
   text2: string;
   text3: string;
@@ -52,4 +53,9 @@ declare type DataNavItem = {
 
 declare type NavProps = {
   page: number;
-}
+};
+
+declare type HighlightWordsProps = {
+  text: string;
+  className: string;
+};

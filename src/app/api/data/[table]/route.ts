@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import supabase from "@/services/client";
 
 export const GET = async (req: NextRequest) => {
-  const urlParts = req.nextUrl.pathname.split('/');
+  const urlParts = req.nextUrl.pathname.split("/");
   const table = urlParts[urlParts.length - 1];
 
   const { data, error } = await supabase.from(table).select("*");

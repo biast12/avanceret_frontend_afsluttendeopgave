@@ -1,8 +1,4 @@
-async function simpleFetch<T>(
-  url: string,
-  method: "GET" | "POST" = "GET",
-  body?: any
-) {
+async function simpleFetch<T>(url: string, method: "GET" | "POST" = "GET", body?: any) {
   let data: T | null = null;
   let error: Error | null = null;
 

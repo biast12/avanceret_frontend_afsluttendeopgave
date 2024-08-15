@@ -29,10 +29,7 @@ export const GET = async (req: NextRequest) => {
 
     return NextResponse.json({ data: combinedData }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { error: `Error fetching data: ${error}` },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: `Error fetching data: ${error}` }, { status: 500 });
   }
 };
 
@@ -44,7 +41,7 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ error: "All fields are required" }, { status: 400 });
     }
 
-    const { data, error } = await supabase.from('emails').insert([{ to, name, email, subject, message }]);
+    const { data, error } = await supabase.from("emails").insert([{ to, name, email, subject, message }]);
 
     if (error) {
       return NextResponse.json({ error: "Error adding data: " + error.message }, { status: 500 });
