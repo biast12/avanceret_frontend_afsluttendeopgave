@@ -1,5 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
-import supabase from "../../../services/client";
+import supabase from "@/services/client";
 
 export const GET = async (req: NextRequest) => {
   try {

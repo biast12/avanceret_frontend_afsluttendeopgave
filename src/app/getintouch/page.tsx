@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import Nav from "../../components/Nav";
-import Modal from "../../components/Modal";
-import simpleFetch from "../../hooks/fetch";
+import Nav from "@/components/Nav";
+import Modal from "@/components/Modal";
+import simpleFetch from "@/hooks/fetch";
 
 const Page = () => {
   const [showModal, setShowModal] = useState<boolean>(false);

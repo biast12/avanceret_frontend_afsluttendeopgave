@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import simpleFetch from "../hooks/fetch";
+import simpleFetch from "@/hooks/fetch";
 
 const Nav = ({ page }: NavProps) => {
   const [data, setData] = useState<DataNavItem[] | null>(null);
