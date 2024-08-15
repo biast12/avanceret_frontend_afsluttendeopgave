@@ -13,7 +13,7 @@ const Nav = ({ page }: NavProps) => {
   useEffect(() => {
     (async () => {
       const { data, error } = await simpleFetch<DataItem[]>(
-        process.env.NEXT_PUBLIC_HOST + "/api/data/page3"
+        process.env.NEXT_PUBLIC_HOST + "/api/data/nav"
       );
 
       setData(data);
